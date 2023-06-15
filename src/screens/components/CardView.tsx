@@ -16,7 +16,7 @@ const CardViewComponent: React.FC<cardDetails> = (props: any) => {
   return (
     <View style={[styles.cardView]}>
       <View style={styles.logoView}>
-        <View style={styles.chipView1}>
+        <View style={styles.chipViewUpper}>
           <Image
             source={require('../../image/chip.png')}
             style={styles.cardChipIcon}
@@ -24,7 +24,7 @@ const CardViewComponent: React.FC<cardDetails> = (props: any) => {
         </View>
         <View style={styles.chipView}></View>
 
-        <View style={styles.chipView2}>
+        <View style={styles.chipViewLower}>
           <Image
             source={require('../../image/cardIcon.png')}
             style={styles.cardLogoIcon}
@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  chipView1: {
+  chipViewUpper: {
     flex: 1,
     alignItems: 'flex-start',
   },
-  chipView2: {
+  chipViewLower: {
     flex: 1,
     alignItems: 'flex-end',
   },
