@@ -1,8 +1,8 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
-import Constants from '../../constants';
-import Colors from '../../colors';
-import Size from '../size';
+import Constants from '../../constants/constants';
+import Colors from '../../constants/colors';
+import Size from '../../constants/size';
 
 interface cardDetails {
   cardNumber: string;

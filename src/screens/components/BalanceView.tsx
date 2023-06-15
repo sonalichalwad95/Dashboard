@@ -1,9 +1,9 @@
 import {View, Text, StyleSheet, Image} from 'react-native';
 import React, {useEffect} from 'react';
-import Constants from '../../constants';
+import Constants from '../../constants/constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Colors from '../../colors';
-import Size from '../size';
+import Colors from '../../constants/colors';
+import Size from '../../constants/size';
 
 interface balanceProps {
   currency_title: string;
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: Colors.White,
     elevation: 25,
-    shadowColor: Colors.Batship_gray,
+    shadowColor: Colors.Violet_blue,
     shadowRadius: 20,
     shadowOpacity: 1,
     textShadowOffset: {

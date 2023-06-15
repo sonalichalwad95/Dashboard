@@ -7,11 +7,11 @@ import {
   TextInput,
 } from 'react-native';
 import React from 'react';
-import Constants from '../../constants';
-import Colors from '../../colors';
+import Constants from '../../constants/constants';
+import Colors from '../../constants/colors';
 import UserAPI from '../../service/UserAPI';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Size from '../size';
+import Size from '../../constants/size';
 
 interface balanceProps {
   title: string;
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     shadowOpacity: 1,
     textShadowOffset: {
-      height: 5,
+      height: 53,
       width: 1,
     },
   },

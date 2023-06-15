@@ -2,21 +2,20 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import Constants from '../constants';
+import Constants from '../constants/constants';
 import CardViewComponent from './components/CardView';
 import BalanceViewComponent from './components/BalanceView';
 import TransferViewComponent from './components/TransferView';
-import Colors from '../colors';
+import Colors from '../constants/colors';
 import NewCardViewComponent from './components/NewCardView';
 
 import callAPI from '../service/BalanceAPI';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Size from './size';
+import Size from '../constants/size';
 
 const Dashboard = () => {
   const [balance_, setBalance_] = useState<any>(0);

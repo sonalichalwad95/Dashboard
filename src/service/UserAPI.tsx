@@ -2,8 +2,8 @@ import {View, Text, FlatList, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Size from '../screens/size';
-import Colors from '../colors';
+import Size from '../size';
+import Colors from '../constants/colors';
 
 const UserAPI = () => {
   const [userDetails, setUserDetails] = useState();

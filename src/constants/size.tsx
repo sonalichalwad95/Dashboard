@@ -1,5 +1,5 @@
 const Size = {
-  icon_arrow: 12,
+  icon_arrow: 14,
   icon_plus: 16,
   icon_user: 34,
   icon_right: 26,
