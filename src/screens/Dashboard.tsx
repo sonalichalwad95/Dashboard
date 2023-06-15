@@ -1,80 +1,123 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
-import Constants from '../constants'
-import CardViewComponent from './components/CardView'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import Constants from '../constants';
+import CardViewComponent from './components/CardView';
+import BalanceViewComponent from './components/BalanceView';
+import TransferViewComponent from './components/TransferView';
+import Colors from '../colors';
+import NewCardViewComponent from './components/NewCardView';
+
+import callAPI from '../service/BalanceAPI';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Size from './size';
 
 const Dashboard = () => {
-    return (
-        
-        <View style={styles.mainView}>
+  const [balance_, setBalance_] = useState<any>(0);
+
+  useEffect(() => {
+    callBalanceApi();
+  }, []);
+
+  const callBalanceApi = async () => {
+    let result = await callAPI();
+    console.log('result>> ', result);
+    setBalance_(result?.balance);
+  };
+
+  return (
+    <ScrollView>
+      <View>
+        <View style={styles.primaryCardView}>
+          <View style={styles.headerView}>
+            <Text style={styles.headerText}> {Constants.card_title}</Text>
+
+            <View style={styles.headerIcon}>
+              <TouchableOpacity>
+                <Icon name="ellipsis-v" size={24} color={Colors.Jet} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View>
             <CardViewComponent
+              color={Colors.Violet_blue}
+              cardNumber={Constants.card_number}
+              expiryDate={Constants.card_date}
             />
-        
-</View>
 
+            <BalanceViewComponent
+              title={Constants.balance_title}
+              currency_title={Constants.balance_currency_title}
+              balance={`$${balance_}`}
+              up_val={Constants.balance_up}
+              down_val={Constants.balance_down}
+              status_title={Constants.balance_status_title}
+              balance_status={Constants.balance_status}
+            />
+            <NewCardViewComponent new_card={Constants.new_card} />
+          </View>
+        </View>
 
-    )
-}
-
+        <View style={styles.transferView}>
+          <TransferViewComponent
+            title={Constants.transfer_title}
+            card={Constants.transfer_card}
+            card_number={Constants.card_number}
+            card_visa={Constants.transfer_card_visa}
+            primary={Constants.primary_button}
+            secondary={Constants.secondary_button}
+          />
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
-    mainView: {
-        flex: 1,
-        backgroundColor: '#FFFFFF', padding: 20,
+  primaryCardView: {
+    backgroundColor: Colors.Seasalt,
+    marginStart: 20,
+    marginEnd: 20,
+    marginTop: 10,
+    padding: 20,
+    borderRadius: 10,
+    elevation: 25,
+    shadowColor: Colors.Violet_blue,
+    shadowRadius: 10,
+    shadowOpacity: 1,
+    textShadowOffset: {
+      height: 50,
+      width: 10,
     },
+  },
 
-    cardView: {
-        height: '25%',
-        width: '75%',
-        borderRadius: 10,
-        backgroundColor: '#2947AA',
-        shadowColor: 'grey',
-        alignSelf: 'center'
-    },
+  headerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 
-    logoView: {
-        flexDirection: 'row',
-    },
+  headerText: {
+    fontSize: Size.text_larger_size,
+    color: Colors.Jet,
+    marginBottom: 30,
+    fontWeight: '600',
+  },
 
-    visaLogoView: {
-        marginTop: '5%',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        marginRight: '8%',
-    },
-
-    cardChipIcon: {
-        margin: 25,
-        height: 40,
-        width: 60,
-        borderRadius: 8,
-    },
-
-    cardLogoIcon: {
-        margin: 25,
-        marginLeft: 60,
-        height: 30,
-        width: 90,
-        borderRadius: 7,
-    },
-    cardVisaIcon: {
-        // margin: 25,
-        marginLeft: 70,
-        height: 20,
-        width: 70,
-        borderRadius: 7,
-    },
-
-    cardNumberDetails: {
-        marginLeft: 20,
-        color: '#FFFFFF',
-        fontSize: 20,
-    },
-    cardDateDetails: {
-        marginLeft: 20,
-        color: '#FFFFFF',
-        fontSize: 16,
-    }
-})
+  headerIcon: {
+    paddingTop: '2%',
+    opacity: 0.8,
+  },
+  transferView: {
+    height: 300,
+    margin: 15,
+  },
+});
 
 export default Dashboard;
